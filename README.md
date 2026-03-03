@@ -122,9 +122,12 @@ uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 
 ### Admin GUI
 
-The admin panel provides a user-friendly interface to manage database tables. Run it from the `backend` directory:
+The admin panel provides a user-friendly interface to manage database tables. It automatically resolves the database file relative to the project root (`clash.db`) unless you specify a different `DATABASE_URL` in your `.env` file.
+
+Run the GUI from the `backend` directory:
 
 ```bash
+cd backend
 python admin_gui.py
 ```
 

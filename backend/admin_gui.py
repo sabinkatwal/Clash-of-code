@@ -32,7 +32,14 @@ except ImportError:
 load_dotenv()
 
 # ==================== DATABASE SETUP ====================
-DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./clash.db")
+# construct a default path pointing to project root clash.db
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
+default_db_path = os.path.join(project_root, "clash.db")
+# sqlite url must have four slashes for absolute path
+default_db_url = f"sqlite:///{default_db_path}"
+
+DATABASE_URL = os.getenv("DATABASE_URL", default_db_url)  # can override via .env
+
 
 try:
     engine = create_engine(DATABASE_URL, echo=False)
