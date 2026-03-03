@@ -171,16 +171,4 @@ Please keep changes focused and provide tests where applicable.
 - If dependency errors occur, recreate the virtual environment and reinstall.
 - For import errors, ensure `PYTHONPATH` includes the project root or run commands from the repository root.
 
-## License
-
-This repository does not include a license file by default. Add a `LICENSE` file if you wish to apply a specific license.
-
----
-
-If you'd like, I can:
-
-- Add a short `CONTRIBUTING.md` and `CODE_OF_CONDUCT.md`.
-- Create a sample `.env.example` with recommended env vars.
-- Add a `Makefile` or `dev` script for common commands.
-
-Feel free to tell me which additions you'd like next.
+ 
