@@ -112,16 +112,39 @@ The `alembic/versions/` folder contains tracked migration scripts. If you use a 
 
 ## Running the App
 
-Run the FastAPI app (example using Uvicorn):
+### FastAPI Server
+
+Run the FastAPI app using Uvicorn:
 
 ```bash
 uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 ```
 
-Notes for the provided workspace:
+### Admin GUI
 
-- To run the admin GUI, run `python backend/admin_gui.py` from the repository root or `backend` folder.
-- The API entrypoint is `app/main.py`.
+The admin panel provides a user-friendly interface to manage database tables. Run it from the `backend` directory:
+
+```bash
+python admin_gui.py
+```
+
+**Admin GUI Features:**
+
+- **View Records**: Browse all records in each table with sortable columns
+- **Add Records**: Create new entries via an intuitive form dialog
+- **Edit Records**: Select and modify existing records
+- **Delete Records**: Remove records with confirmation dialog
+- **Refresh Data**: Reload table data from the database
+- **Multiple Tables**: Manage Users, Matches, Submissions, and Ratings
+
+**Tabs:**
+
+- **👥 Users** — Manage user accounts (username, email, password)
+- **🎮 Matches** — Create and manage coding matches
+- **📝 Submissions** — View code submissions for matches
+- **⭐ Ratings** — Track user ratings for matches
+
+The admin GUI automatically connects to your configured database and displays real-time data.
 
 ## API Routes
 
