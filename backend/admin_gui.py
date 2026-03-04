@@ -28,8 +28,12 @@ except ImportError:
     def hash_password(password: str) -> str:
         return password  # WARNING: Not secure, only for demo
 
-# Load environment variables
-load_dotenv()
+# Load environment variables (prefer backend/app/.env when present)
+env_path = os.path.join(os.path.dirname(__file__), "app", ".env")
+if os.path.exists(env_path):
+    load_dotenv(env_path)
+else:
+    load_dotenv()
 
 # ==================== DATABASE SETUP ====================
 # construct a default path pointing to project root clash.db
@@ -38,8 +42,14 @@ default_db_path = os.path.join(project_root, "clash.db")
 # sqlite url must have four slashes for absolute path
 default_db_url = f"sqlite:///{default_db_path}"
 
-DATABASE_URL = os.getenv("DATABASE_URL", default_db_url)  # can override via .env
+raw_db_url = os.getenv("DATABASE_URL", default_db_url)  # can override via .env
 
+# If .env contains an asyncpg URL (used by async code elsewhere), convert
+# to a sync-compatible URL for this synchronous admin GUI (requires psycopg2).
+if isinstance(raw_db_url, str) and raw_db_url.startswith("postgresql+asyncpg://"):
+    DATABASE_URL = raw_db_url.replace("+asyncpg", "")
+else:
+    DATABASE_URL = raw_db_url
 
 try:
     engine = create_engine(DATABASE_URL, echo=False)
