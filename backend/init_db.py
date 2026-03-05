@@ -16,6 +16,7 @@ from app.database.models.user import User
 from app.database.models.match import Match
 from app.database.models.submission import Submission
 from app.database.models.rating import Rating
+from app.database.models.analytics import Analytics
 
 # Load environment variables (prefer backend/app/.env when present)
 env_path = os.path.join(os.path.dirname(__file__), "app", ".env")

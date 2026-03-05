@@ -19,6 +19,7 @@ from app.database.models.user import User
 from app.database.models.match import Match
 from app.database.models.submission import Submission
 from app.database.models.rating import Rating
+from app.database.models.analytics import Analytics
 
 # Try to import hash_password, with fallback
 try:
@@ -342,6 +343,12 @@ ratings_columns = ["id", "user_id", "match_id", "score"]
 ratings_tab = ttk.Frame(notebook)
 notebook.add(ratings_tab, text="⭐ Ratings")
 create_table_tab(ratings_tab, Rating, ratings_columns)
+
+# Analytics Tab
+analytics_columns = ["id", "user_id", "match_id", "score", "created_at"]
+analytics_tab = ttk.Frame(notebook)
+notebook.add(analytics_tab, text="📊 Analytics")
+create_table_tab(analytics_tab, Analytics, analytics_columns)
 
 # Status bar
 status_frame = ttk.Frame(root)
